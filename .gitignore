@@ -1,0 +1,7 @@
+*.sqlite*
+*__pycache__*
+realestatepro/__pycache__/admin.cpython-312.pyc
+realestatepro/__pycache__/fields.cpython-312.py
+realestatepro/__pycache__/models.cpython-312.pyc
+modified:   cmsER/__pycache__/settings.cpython-312.pyc
+modified:   cmsER/__pycache__/urls.cpython-312.pyc
