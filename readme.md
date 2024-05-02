@@ -14,6 +14,8 @@ Usar os related_names dos models:
 
 
 Estava a ver a escolha de estados (e pag.520)
+Faz login e faz logout. O redirect para o profile ainda não funciona. 
+    -> Corrigir para Português
 
 
 

@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>{% block title %}Real Estate Pro{% endblock %}</title>
+  <link href='{% static "css/base.css" %}' rel="stylesheet">
+</head>
+<body>
+  <div id="header">
+    <a href="/" class="logo">Real Estate Pro &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M360-120v-360h320q0-33 23.5-56.5T760-560q33 0 56.5 23.5T840-480v360H640v-200h-80v200H360Zm-240 0v-520l520-200v280H280v440H120Z"/></svg></a>
+    <ul class="menu">
+      {% if request.user.is_authenticated %}
+      <li>
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+          <a href="#" onclick="this.closest('form').submit();">Sair</a>
+        </form>
+      </li>
+      {% else %}
+      <li><a href='{% url "login" %}'>Entrar</a></li>
+      {% endif %}
+    </ul>
+  </div>
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+  {% block include_js %}
+  {% endblock %}
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      // DOM loaded
+      {% block domready %}
+      {% endblock %}
+    })
+  </script>
+</body>
+
+</html>
