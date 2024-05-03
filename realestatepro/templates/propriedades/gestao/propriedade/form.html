@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}As minhas Propriedades{% endblock %}
+
+{% block content %}
+  <h1>As minhas Propriedades</h1>
+    <div class="module">
+        {% for propriedade in object_list %}
+        <div class="propriedade-info">
+            <h3>{{ propriedade.title }}</h3>
+            <p>
+                <a href='{% url "propriedade_edit" propriedade.id %}'>Edit</a>
+                <a href='{% url "propriedade_delete" propriedade.id %}'>Delete</a>
+            </p>
+        </div>
+        {% empty %}
+            <p>Ainda não tem propriedades criadas.</p>
+        {% endfor %}
+        <p>
+            <a href='{% url "propriedade_create" %}' class="button">Criar nova propriedade</a>
+        </p>
+    </div>
+{% endblock %}

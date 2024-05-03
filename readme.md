@@ -13,9 +13,10 @@ Usar os related_names dos models:
 
 
 
-Estava a ver a escolha de estados (e pag.520)
+Estava a ver a escolha de estados (e pag.549)
 Faz login e faz logout. O redirect para o profile ainda não funciona. 
-    -> Corrigir para Português
+Cannot resolve keyword 'owner' into field. - A trabalhar nos views.py  
+    
 
 
 
