@@ -2,7 +2,6 @@ from django.urls import reverse
 from django.utils.html import format_html
 from django.contrib import admin
 from .models import Mediador, Cliente, Propriedade, Proposta, BaseContent, Visita, Image, Video, File
-from django.forms import MediaField, MediaDefiningClass
 
 
 admin.site.index_title = 'Inicio'
@@ -17,7 +16,7 @@ class VisitaInline(admin.TabularInline):
     extra = 0
 
 class BaseContentInline(admin.TabularInline):
-    # model = BaseContent
+    model = BaseContent
     extra = 0
 
 class ImageInline(BaseContentInline):
@@ -44,13 +43,9 @@ class ClienteAdmin(admin.ModelAdmin):
 @admin.register(Propriedade)
 class PropriedadeAdmin(admin.ModelAdmin):
     list_display = ['id', 'mediador', 'venda', 'disponibilidade', 'estado', 'natureza', 'titulo']
-    # search_fields = ['id', 'mediador__nome', 'venda__nome', 'titulo', 'descricao']
-    # list_filter = ['disponibilidade', 'estado', 'natureza']
-    # inlines = [PropostaInline, VisitaInline, ImageInline, VideoInline, FileInline]
-
     search_fields = ['id', 'mediador__nome', 'venda__nome', 'titulo', 'descricao']
     list_filter = ['disponibilidade', 'estado', 'natureza']
-    inlines = [PropostaInline, VisitaInline, BaseContentInline]
+    inlines = [PropostaInline, VisitaInline, ImageInline, VideoInline, FileInline]
 
 
     def save_model(self, request, obj, form, change):
@@ -96,13 +91,13 @@ class VisitaAdmin(admin.ModelAdmin):
     list_filter = ['cliente', 'data_visita']
 
 # @admin.register(Image)
-# class ImageAdmin(admin.ModelAdmin):
-#     pass
+class ImageAdmin(admin.ModelAdmin):
+    pass
 
 # @admin.register(Video)
-# class VideoAdmin(admin.ModelAdmin):
-#     pass
+class VideoAdmin(admin.ModelAdmin):
+    pass
 
 # @admin.register(File)
-# class FileAdmin(admin.ModelAdmin):
-#     pass
+class FileAdmin(admin.ModelAdmin):
+    pass

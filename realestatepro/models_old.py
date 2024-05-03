@@ -143,7 +143,6 @@ class Visita(models.Model):
 # Models para conteúdo polimorfico (imagens, videos, files)
 class BaseContent(models.Model):
     title = models.CharField(max_length=100)
-    description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     propriedade = models.ForeignKey(Propriedade, related_name='%(class)s_set', on_delete=models.CASCADE)
