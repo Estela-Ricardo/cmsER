@@ -1,11 +1,16 @@
 from django.urls import reverse
 from django.utils.html import format_html
 from django.contrib import admin
-from .models import Mediador, Cliente, Propriedade, Proposta, BaseContent, Visita, Image, Video, File
+from django import forms
+from .models import Mediador, Cliente, Propriedade, Proposta, Visita, MediaItem
 
 
 admin.site.index_title = 'Inicio'
 admin.site.site_title = 'Real Estate Pro'
+
+class MediaItemInline(admin.TabularInline):
+    model = MediaItem
+    extra = 0
 
 class PropostaInline(admin.TabularInline):
     model = Proposta
@@ -15,19 +20,6 @@ class VisitaInline(admin.TabularInline):
     model = Visita
     extra = 0
 
-class BaseContentInline(admin.TabularInline):
-    model = BaseContent
-    extra = 0
-
-class ImageInline(BaseContentInline):
-    model = Image
-
-class VideoInline(BaseContentInline):
-    model = Video
-
-class FileInline(BaseContentInline):
-    model = File
-    
 @admin.register(Mediador)
 class MediadorAdmin(admin.ModelAdmin):
     list_display = ['nome', 'email', 'telefone', 'morada', 'nif', 'iban']
@@ -45,7 +37,7 @@ class PropriedadeAdmin(admin.ModelAdmin):
     list_display = ['id', 'mediador', 'venda', 'disponibilidade', 'estado', 'natureza', 'titulo']
     search_fields = ['id', 'mediador__nome', 'venda__nome', 'titulo', 'descricao']
     list_filter = ['disponibilidade', 'estado', 'natureza']
-    inlines = [PropostaInline, VisitaInline]
+    inlines = [PropostaInline, VisitaInline, MediaItemInline]
 
 
     def save_model(self, request, obj, form, change):
@@ -90,14 +82,17 @@ class VisitaAdmin(admin.ModelAdmin):
     search_fields = ['id_visita', 'cliente__nome', 'propriedade__titulo']
     list_filter = ['cliente', 'data_visita']
 
-@admin.register(Image)
-class ImageAdmin(admin.ModelAdmin):
-    pass
+class MediaItemAdminForm(forms.ModelForm):
+    class Meta:
+        model = MediaItem
+        fields = '__all__'
 
-@admin.register(Video)
-class VideoAdmin(admin.ModelAdmin):
-    pass
+    def clean(self):
+        cleaned_data = super().clean()
+        if not any([cleaned_data.get('imagem'), cleaned_data.get('video'), cleaned_data.get('ficheiro')]):
+            raise forms.ValidationError("Pelo menos uma imagem, vídeo ou ficheiro é necessário.")
+        return cleaned_data
 
-@admin.register(File)
-class FileAdmin(admin.ModelAdmin):
-    pass
+@admin.register(MediaItem)
+class MediaItemAdmin(admin.ModelAdmin):
+    form = MediaItemAdminForm

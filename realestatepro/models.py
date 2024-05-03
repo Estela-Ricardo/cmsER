@@ -67,7 +67,7 @@ class Propriedade(models.Model):
         return f"{prefixo}{numero_autoincrement:04}"
 
     id = models.CharField(primary_key=True, max_length=10, default=generate_custom_id)
-    natureza = models.CharField(max_length=50, choices=NATUREZA_CHOICES, blank=False)
+    natureza = models.CharField(max_length=50, choices=NATUREZA_CHOICES, blank=True)
     mediador = models.ForeignKey(Mediador, null=True, blank=True, related_name='propriedades_criadas', on_delete=models.SET_NULL)
     disponibilidade = models.CharField(max_length=50, choices=DISPONIBILIDADE_CHOICES, blank=True)
     estado = models.CharField(max_length=150, choices=ESTADO_CHOICES, blank=True)
@@ -98,9 +98,6 @@ class Propriedade(models.Model):
         ordering = ['-criacao']
 
     def save(self, *args, mediador=None, **kwargs):
-        # Garante que a natureza tenha um valor ao salvar
-        if not self.natureza:
-            raise ValueError("O campo 'natureza' é obrigatório.")
 
         # Se o mediador não estiver definido e o mediador não for None, associa-o como mediador
         if not self.mediador_id and mediador is not None:
@@ -141,34 +138,18 @@ class Visita(models.Model):
         return f"Visita {self.id_visita}"
 
 # Models para conteúdo polimorfico (imagens, videos, files)
-class BaseContent(models.Model):
-    title = models.CharField(max_length=100)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
-    propriedade = models.ForeignKey(Propriedade, related_name='%(class)s_set', on_delete=models.CASCADE)
+class MediaItem(models.Model):
+    MEDIA_CHOICES = [
+        ('imagem', 'Imagem'),
+        ('video', 'Vídeo'),
+        ('arquivo', 'Arquivo'),
+    ]
 
-    class Meta:
-        abstract = True
-        
+    propriedade = models.ForeignKey(Propriedade, on_delete=models.CASCADE)
+    tipo = models.CharField(max_length=20, choices=MEDIA_CHOICES)
+    imagem = models.ImageField(upload_to='images/', null=True, blank=True)
+    video = models.URLField(null=True, blank=True)
+    arquivo = models.FileField(upload_to='files/', null=True, blank=True)
+
     def __str__(self):
-        return self.title
-
-class Image(BaseContent):
-    image = models.ImageField(upload_to='images/')
-
-class Video(BaseContent):
-    title = models.CharField(max_length=100)
-    youtube_link = models.URLField()
-
-    # Só permite videos do youtube
-    def clean(self):
-        super().clean()
-        if not re.match(r'^https?://(?:www\.)?youtube.com/watch\?v=[\w-]+$', self.youtube_link):
-            raise ValidationError('O link do vídeo deve ser do YouTube.')
-
-    def save(self, *args, **kwargs):
-        self.full_clean()  # Executa a validação personalizada
-        super().save(*args, **kwargs)
-
-class File(BaseContent):
-    file = models.FileField(upload_to='files/')
+        return f"{self.get_tipo_display()} para {self.propriedade}"
