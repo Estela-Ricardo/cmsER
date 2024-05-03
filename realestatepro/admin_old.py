@@ -45,7 +45,7 @@ class PropriedadeAdmin(admin.ModelAdmin):
     list_display = ['id', 'mediador', 'venda', 'disponibilidade', 'estado', 'natureza', 'titulo']
     search_fields = ['id', 'mediador__nome', 'venda__nome', 'titulo', 'descricao']
     list_filter = ['disponibilidade', 'estado', 'natureza']
-    inlines = [PropostaInline, VisitaInline, ImageInline, VideoInline, FileInline]
+    inlines = [PropostaInline, VisitaInline]
 
 
     def save_model(self, request, obj, form, change):
@@ -90,14 +90,14 @@ class VisitaAdmin(admin.ModelAdmin):
     search_fields = ['id_visita', 'cliente__nome', 'propriedade__titulo']
     list_filter = ['cliente', 'data_visita']
 
-# @admin.register(Image)
+@admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
     pass
 
-# @admin.register(Video)
+@admin.register(Video)
 class VideoAdmin(admin.ModelAdmin):
     pass
 
-# @admin.register(File)
+@admin.register(File)
 class FileAdmin(admin.ModelAdmin):
     pass
