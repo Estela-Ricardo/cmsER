@@ -7,10 +7,15 @@
 
 	--borderColor:#125769;
 
-	--mainText:black;
-	--secondaryText:#4b5156;
+	--mainText: #ddd;
+	--secondaryText:#bbb;
+    --darkMainText:#333; 
+
+    --backgroundColor: #121212;
+    
 
 	--themeDotBorder:#24292e;
+	
 
 	--previewBg:rgb(251, 249, 243, 0.8);
 	--previewShadow:#f0ead6;
@@ -25,12 +30,13 @@ body {
     margin:0;
     font-family:'Roboto', sans-serif;
     font-weight:400;
-    color:#333;
+    color: var(--mainText) !important;
+    background-color: var(--backgroundColor) !important;
 }
 
 a {
     /* color:#3fad37; */
-    color: var(--mainColor);
+    color: var(--mainText);
     text-decoration:none;
 }
 

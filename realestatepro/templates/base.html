@@ -7,51 +7,76 @@
   <meta charset="utf-8" />
   <title>{% block title %}Real Estate Pro{% endblock %}</title>
   <link href='{% static "css/base.css" %}' rel="stylesheet">
+  <link rel="icon" href="{% static 'icon.svg' %}" type="image/svg+xml">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Estilo personalizado para cards de propriedades */
+    h2{
+      background-color: #121212;
+      text-align: center;
+      padding: 20px 0;
+      font-weight: 300;
+      font-size: 30px;
+      color: #ffffcc;
+    }
+    .card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background-color: #222;
+      border-color: #18768f;
+      -webkit-box-shadow: 0px 2px 7px 0px rgba(24,118,143,1);
+      -moz-box-shadow: 0px 2px 7px 0px rgba(24,118,143,1);
+      box-shadow: 0px 2px 7px 0px rgba(24,118,143,1);
+
+    }
+    .card:hover {
+      filter: brightness(1.2);
+      cursor: pointer;
+    }
+
+    .card-img-top {
+      object-fit: cover;
+      flex-grow: 1;
+    }
+
+    .card-body {
+      flex-grow: 0;
+    }
+  </style>
 </head>
+
 <body>
   <div id="header">
     <a href="/" class="logo">Real Estate Pro &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M360-120v-360h320q0-33 23.5-56.5T760-560q33 0 56.5 23.5T840-480v360H640v-200h-80v200H360Zm-240 0v-520l520-200v280H280v440H120Z"/></svg></a>
-    <ul class="menu">
-      {% if request.user.is_authenticated %}
-      <li>
-        <form action="{% url 'logout' %}" method="post">
-          {% csrf_token %}
-          <a href="#" onclick="this.closest('form').submit();">Sair</a>
-        </form>
-      </li>
-      {% else %}
-      <li><a href='{% url "login" %}'>Entrar</a></li>
-      {% endif %}
-    </ul>
-  </div>
-  <div id="search-properties">
-    <h2>Pesquisar Propriedades</h2>
-    <!-- Aqui você pode adicionar o formulário de pesquisa de propriedades -->
   </div>
 
-  <div id="property-cards">
-    <h2>Propriedades</h2>
-    <!-- Aqui você pode adicionar os cartões com as fotos e títulos das propriedades -->
-    <!-- Exemplo de cartão:
-    <div class="property-card">
-      <img src="{% static 'images/property1.jpg' %}" alt="Imagem da propriedade 1">
-      <h3>Titulo da Propriedade 1</h3>
+  <div class="container">
+    <h2>Propriedades Disponíveis</h2>
+    <div class="row">
+      <!-- Itera sobre as propriedades disponíveis -->
+      {% for propriedade in propriedades_disponiveis %}
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <!-- Exibe a imagem associada à propriedade -->
+          <img src="{{ propriedade.mediaitem_set.first.imagem.url }}" class="card-img-top" alt="Imagem da Propriedade">
+          <div class="card-body">
+            <h5 class="card-title">{{ propriedade.titulo }}</h5>
+            <p class="card-text">{{ propriedade.estado }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
     </div>
-    -->
   </div>
+
   <div id="content">
     {% block content %}
     {% endblock %}
   </div>
   {% block include_js %}
   {% endblock %}
-  <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-      // DOM loaded
-      {% block domready %}
-      {% endblock %}
-    })
-  </script>
+
 </body>
 
 </html>

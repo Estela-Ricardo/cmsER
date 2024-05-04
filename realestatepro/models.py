@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.core.exceptions import ValidationError
 import re
+import uuid
 
 class Mediador(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -23,8 +24,9 @@ class Mediador(models.Model):
 class Cliente(models.Model):
     def generate_custom_id():
         prefixo = 'CLI'
-        numero_autoincrement = Propriedade.objects.count()
-        return f"{prefixo}{numero_autoincrement:04}"
+        ultimo_id = Cliente.objects.aggregate(max_id=models.Max('id'))['max_id']
+        novo_id_numero = int(ultimo_id[3:]) + 1 if ultimo_id else 1
+        return f"{prefixo}{novo_id_numero:04}"
     
     leidc = models.CharField(max_length=20, primary_key=True, default=generate_custom_id)
     nome = models.CharField(max_length=100)
@@ -63,8 +65,9 @@ class Propriedade(models.Model):
    
     def generate_custom_id():
         prefixo = 'REP'
-        numero_autoincrement = Propriedade.objects.count() + 1000
-        return f"{prefixo}{numero_autoincrement:04}"
+        ultimo_id = Propriedade.objects.aggregate(max_id=models.Max('id'))['max_id']
+        novo_id_numero = int(ultimo_id[3:]) + 1 if ultimo_id else 1001
+        return f"{prefixo}{novo_id_numero:04}"
 
     id = models.CharField(primary_key=True, max_length=10, default=generate_custom_id)
     natureza = models.CharField(max_length=50, choices=NATUREZA_CHOICES, blank=True)
@@ -89,8 +92,6 @@ class Propriedade(models.Model):
     freguesia = models.CharField(max_length=50, blank=True)
     zona = models.CharField(max_length=50, blank=True)
     certificado_energetico = models.CharField(max_length=100, blank=True)
-    # imagens = models.FileField(upload_to='media/images/', blank=True, null=True)
-    # video = models.FileField(upload_to='media/videos/', blank=True, null=True)
     venda = models.ForeignKey(Cliente, blank=True, null=True, on_delete=models.CASCADE)
     criacao = models.DateTimeField(auto_now_add=True)
 
@@ -137,19 +138,21 @@ class Visita(models.Model):
     def __str__(self):
         return f"Visita {self.id_visita}"
 
-# Models para conteúdo polimorfico (imagens, videos, files)
-class MediaItem(models.Model):
-    MEDIA_CHOICES = [
-        ('imagem', 'Imagem'),
-        ('video', 'Vídeo'),
-        ('arquivo', 'Arquivo'),
-    ]
+def upload_to(instance, filename):
+    # Renomeia o ficheiro da imagem para algo único
+    ext = filename.split('.')[-1]
+    new_filename = f"{instance.id_media}.{ext}"
+    return f'images/{new_filename}'
 
+class MediaItem(models.Model):
+    id_media = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     propriedade = models.ForeignKey(Propriedade, on_delete=models.CASCADE)
-    tipo = models.CharField(max_length=20, choices=MEDIA_CHOICES)
-    imagem = models.ImageField(upload_to='images/', null=True, blank=True)
+    imagem = models.ImageField(upload_to=upload_to, null=True, blank=True)
     video = models.URLField(null=True, blank=True)
-    arquivo = models.FileField(upload_to='files/', null=True, blank=True)
+    ficheiro = models.FileField(upload_to=upload_to, null=True, blank=True)
+
+    class Meta:
+        ordering = ['-propriedade']
 
     def __str__(self):
-        return f"{self.get_tipo_display()} para {self.propriedade}"
+        return f"Item {self.id_media}"

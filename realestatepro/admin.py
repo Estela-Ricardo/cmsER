@@ -1,20 +1,27 @@
 from django.urls import reverse
 from django.utils.html import format_html
 from django.contrib import admin
-from django import forms
 from .models import Mediador, Cliente, Propriedade, Proposta, Visita, MediaItem
 
 
 admin.site.index_title = 'Inicio'
 admin.site.site_title = 'Real Estate Pro'
 
+
 class MediaItemInline(admin.TabularInline):
     model = MediaItem
-    extra = 0
+    extra = 0 # Define o número de formulários em branco exibidos por padrão como 0
+    fields = ['imagem', 'video', 'delete_checkbox']
+    readonly_fields = ['delete_checkbox']
+    verbose_name_plural = "Itens Media"
+
+    def delete_checkbox(self, obj):
+        return ''
+    delete_checkbox.short_description = ''
 
 class PropostaInline(admin.TabularInline):
     model = Proposta
-    extra = 0  # Define o número de formulários em branco exibidos por padrão como 0
+    extra = 0  
 
 class VisitaInline(admin.TabularInline):
     model = Visita
@@ -34,8 +41,7 @@ class ClienteAdmin(admin.ModelAdmin):
 
 @admin.register(Propriedade)
 class PropriedadeAdmin(admin.ModelAdmin):
-    list_display = ['id', 'mediador', 'venda', 'disponibilidade', 'estado', 'natureza', 'titulo']
-    search_fields = ['id', 'mediador__nome', 'venda__nome', 'titulo', 'descricao']
+    search_fields = ['id', 'mediador__nome',  'titulo', 'venda__nome', 'descricao']
     list_filter = ['disponibilidade', 'estado', 'natureza']
     inlines = [PropostaInline, VisitaInline, MediaItemInline]
 
@@ -81,18 +87,3 @@ class VisitaAdmin(admin.ModelAdmin):
     list_display = ['id_visita', 'cliente', link_to_propriedade, 'data_visita']
     search_fields = ['id_visita', 'cliente__nome', 'propriedade__titulo']
     list_filter = ['cliente', 'data_visita']
-
-class MediaItemAdminForm(forms.ModelForm):
-    class Meta:
-        model = MediaItem
-        fields = '__all__'
-
-    def clean(self):
-        cleaned_data = super().clean()
-        if not any([cleaned_data.get('imagem'), cleaned_data.get('video'), cleaned_data.get('ficheiro')]):
-            raise forms.ValidationError("Pelo menos uma imagem, vídeo ou ficheiro é necessário.")
-        return cleaned_data
-
-@admin.register(MediaItem)
-class MediaItemAdmin(admin.ModelAdmin):
-    form = MediaItemAdminForm
