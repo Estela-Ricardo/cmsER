@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
+<html lang="pt-PT">
 
 <head>
   <meta charset="utf-8" />
@@ -23,6 +23,21 @@
       <li><a href='{% url "login" %}'>Entrar</a></li>
       {% endif %}
     </ul>
+  </div>
+  <div id="search-properties">
+    <h2>Pesquisar Propriedades</h2>
+    <!-- Aqui você pode adicionar o formulário de pesquisa de propriedades -->
+  </div>
+
+  <div id="property-cards">
+    <h2>Propriedades</h2>
+    <!-- Aqui você pode adicionar os cartões com as fotos e títulos das propriedades -->
+    <!-- Exemplo de cartão:
+    <div class="property-card">
+      <img src="{% static 'images/property1.jpg' %}" alt="Imagem da propriedade 1">
+      <h3>Titulo da Propriedade 1</h3>
+    </div>
+    -->
   </div>
   <div id="content">
     {% block content %}
