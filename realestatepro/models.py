@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-from django.core.exceptions import ValidationError
-import re
 import uuid
 
 class Mediador(models.Model):
@@ -24,15 +22,18 @@ class Mediador(models.Model):
 class Cliente(models.Model):
     def generate_custom_id():
         prefixo = 'CLI'
-        ultimo_id = Cliente.objects.aggregate(max_id=models.Max('id'))['max_id']
+        ultimo_id = Cliente.objects.aggregate(max_id=models.Max('leidc'))['max_id']
         novo_id_numero = int(ultimo_id[3:]) + 1 if ultimo_id else 1
         return f"{prefixo}{novo_id_numero:04}"
     
-    leidc = models.CharField(max_length=20, primary_key=True, default=generate_custom_id)
+    leidc = models.CharField(primary_key=True, max_length=10, default=generate_custom_id)
     nome = models.CharField(max_length=100)
     email = models.EmailField(max_length=50, blank=True)
     telefone = models.CharField(max_length=15, blank=True)
     morada = models.CharField(max_length=100, blank=True)
+
+    class Meta:
+        ordering = ['-nome']
 
     def __str__(self):
         return self.nome

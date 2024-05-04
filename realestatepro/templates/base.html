@@ -43,6 +43,15 @@
     .card-body {
       flex-grow: 0;
     }
+    footer {
+      background-color: #125769;
+      color: #bbb;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 30px;
+      bottom: 0;
+      width: 100%;
+    }
   </style>
 </head>
 
@@ -69,14 +78,9 @@
       {% endfor %}
     </div>
   </div>
-
-  <div id="content">
-    {% block content %}
-    {% endblock %}
-  </div>
-  {% block include_js %}
-  {% endblock %}
+  <footer>
+    <p>&copy; {% now "Y" %} Real Estate Pro. Todos os direitos reservados.</p>
+  </footer>
 
 </body>
-
 </html>

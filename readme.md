@@ -15,16 +15,16 @@ Usar os related_names dos models:
 
 Estava a ver a escolha de estados (e pag.549)
 Faz login e faz logout. O redirect para o profile ainda não funciona. 
-Cannot resolve keyword 'owner' into field. - A trabalhar nos views.py  
 5 de Maio:
     - preciso eliminar tudo o que tenha a ver com logins/logouts
     - preciso eliminar content
     - preciso corrigir e limpar css
+    - Verificar viabilidade do signals.py pois imagens continuam na pasta
 
 
 
 Funcionalidades:
- - Se o Mediador não for adicionado aquando da criação da propriedade, é automáticamente atribuido o user atual autenticado
+ - Se o Mediador não for adicionado aquando da criação da propriedade, é automaticamente atribuido o user atual autenticado
  - ID da Propriedade/Cliente autogerados mas podem ser modificados
 
  
