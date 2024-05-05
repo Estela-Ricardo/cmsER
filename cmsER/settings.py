@@ -8,7 +8,7 @@
 
 # For the full list of settings and their values, see
 # https://docs.djangoproject.com/en/5.0/ref/settings
-# MY SHORTCUTS, GET YOURS xD
+# MY SHORTCUTS: xD
 # VENV PATH = cd C:\Users\Utilizador\env\cmsER\Scripts\activate
 # PROJECT PATH =  cd C:\Users\Utilizador\Documents\Django\finalProject\cmsER
 # """
