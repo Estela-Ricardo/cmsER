@@ -22,6 +22,7 @@ This is a real estate management system project developed in Portuguese using Dj
 ## Running the Project
 To run the project locally, follow these steps:
 
+<small>
 ## 1. Clone the repository:
    
     git clone https://github.com/Estela-Ricardo/cmsER
@@ -72,7 +73,7 @@ To run the project locally, follow these steps:
 ## 10. Open a web browser and navigate to: 
 
     http://127.0.0.1:8000/admin/
-    
+</small>   
 
 ## Contribution
 
@@ -80,7 +81,7 @@ Contributions are welcome! Feel free to open an issue or submit a pull request w
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](https://opensource.org/licenses/MIT) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://opensource.org/licenses/MIT){:target="_blank"} file for details.
 
 ---
 Developed by [Estela Ricardo](https://github.com/Estela-Ricardo)
