@@ -19,10 +19,12 @@ This is a real estate management system project developed in Portuguese using Dj
  - Automatic Agent Assignment: If an agent is not specified during the creation of a property, the system automatically assigns the currently authenticated user as the responsible agent.
  - Auto-generated IDs: Property and client IDs are auto-generated, ensuring uniqueness and facilitating system management. IDs can also be manually updated if needed.
 
+<small>
+
 ## Running the Project
 To run the project locally, follow these steps:
 
-<small>
+
 ## 1. Clone the repository:
    
     git clone https://github.com/Estela-Ricardo/cmsER
@@ -73,6 +75,7 @@ To run the project locally, follow these steps:
 ## 10. Open a web browser and navigate to: 
 
     http://127.0.0.1:8000/admin/
+
 </small>   
 
 ## Contribution
