@@ -1,5 +1,4 @@
-# Real Estate Pro &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M360-120v-360h320q0-33 23.5-56.5T760-560q33 0 56.5 23.5T840-480v360H640v-200h-80v200H360Zm-240 0v-520l520-200v280H280v440H120Z"/></svg>
-
+# Real Estate Pro ![icon](static/icon.svg)
 ## Project Description
 This is a real estate management system project developed in Portuguese using Django. The application allows users to efficiently manage properties, clients, and agents. It is designed with the goal of providing CRUD (Create, Read, Update, Delete) functionality for all main entities of the system.
 
