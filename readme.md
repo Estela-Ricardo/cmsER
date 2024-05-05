@@ -84,8 +84,7 @@ Contributions are welcome! Feel free to open an issue or submit a pull request w
 
 ## License
 
-<!-- This project is licensed under the MIT License - see the [LICENSE](https://opensource.org/licenses/MIT:target="_blank") file for details. -->
-This project is licensed under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a> - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://opensource.org/licenses/MIT) file for details.
 
 ---
 Developed by [Estela Ricardo](https://github.com/Estela-Ricardo)
