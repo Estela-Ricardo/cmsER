@@ -82,10 +82,9 @@ To run the project locally, follow these steps:
 
 Contributions are welcome! Feel free to open an issue or submit a pull request with suggestions for improvements, bug fixes, or new features.
 
-
 ## License
 
-This project is licensed under the [MIT License](LICENSE){:target="_blank"} - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://opensource.org/licenses/MIT:target="_blank") file for details.
 
 ---
 Developed by [Estela Ricardo](https://github.com/Estela-Ricardo)
