@@ -53,7 +53,7 @@ To run the project locally, follow these steps:
 
 ### 6. Create initial database migrations:    
    
-    python manage.py makemigrations
+    python manage.py makemigrations realestatepro
     
 
 ### 7. Apply migrations to the database:
