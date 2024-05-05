@@ -1,0 +1,13 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Saiu da sessão{% endblock %}
+
+{% block content %}
+<h1>Saiu da sessão</h1>
+<div class="module">
+  <h3>
+    Saiu da sessão com sucesso. <hr>
+    Pode <a href='{% url "login" %}'>entrar novamente</a>
+  </h3>
+</div>
+{% endblock %}
