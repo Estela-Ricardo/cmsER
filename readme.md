@@ -19,18 +19,18 @@ This is a real estate management system project developed in Portuguese using Dj
  - Automatic Agent Assignment: If an agent is not specified during the creation of a property, the system automatically assigns the currently authenticated user as the responsible agent.
  - Auto-generated IDs: Property and client IDs are auto-generated, ensuring uniqueness and facilitating system management. IDs can also be manually updated if needed.
 
-<small>
 
 ## Running the Project
 To run the project locally, follow these steps:
 
+<small>
 
-## 1. Clone the repository:
+### 1. Clone the repository:
    
     git clone https://github.com/Estela-Ricardo/cmsER
     
 
-## 2.  (optional) Create and activate a virtual environment:
+### 2.  (optional) Create and activate a virtual environment:
    
     # Create a virtual environment in the project folder
     python -m venv myenv
@@ -42,37 +42,37 @@ To run the project locally, follow these steps:
     source myenv/bin/activate
     
 
-## 3. Navigate to the project directory:
+### 3. Navigate to the project directory:
 
     cd cmsER
     
 
-## 4. Install the project dependencies using the requirements.txt file:
+### 4. Install the project dependencies using the requirements.txt file:
    
     pip install -r requirements.txt
     
 
-## 6. Create initial database migrations:    
+### 6. Create initial database migrations:    
    
     python manage.py makemigrations
     
 
-## 7. Apply migrations to the database:
+### 7. Apply migrations to the database:
    
     python manage.py migrate
     
 
-## 8. Create a superuser (admin) for the Django admin interface:
+### 8. Create a superuser (admin) for the Django admin interface:
   
     python manage.py createsuperuser
     
 
-## 9. Start the development server:
+### 9. Start the development server:
    
     python manage.py runserver
     
 
-## 10. Open a web browser and navigate to: 
+### 10. Open a web browser and navigate to: 
 
     http://127.0.0.1:8000/admin/
 
