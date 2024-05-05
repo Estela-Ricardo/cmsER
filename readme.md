@@ -22,13 +22,13 @@ This is a real estate management system project developed in Portuguese using Dj
 ## Running the Project
 To run the project locally, follow these steps:
 
-# 1. Clone the repository:
-    ```bash
+## 1. Clone the repository:
+   
     git clone https://github.com/Estela-Ricardo/cmsER
-    ```
+    
 
-# 2.  (optional) Create and activate a virtual environment:
-    ```bash
+## 2.  (optional) Create and activate a virtual environment:
+   
     # Create a virtual environment in the project folder
     python -m venv myenv
 
@@ -37,49 +37,42 @@ To run the project locally, follow these steps:
 
     # Activate the virtual environment on Linux/Mac
     source myenv/bin/activate
-    ```
+    
 
-# 3. Navigate to the project directory:
+## 3. Navigate to the project directory:
 
-    ```bash
     cd cmsER
-    ```
+    
 
-# 4. Install the project dependencies using the requirements.txt file:
-
-    ```bash
+## 4. Install the project dependencies using the requirements.txt file:
+   
     pip install -r requirements.txt
-    ```
+    
 
-# 6. Create initial database migrations:    
-
-    ```bash
+## 6. Create initial database migrations:    
+   
     python manage.py makemigrations
-    ```
+    
 
-# 7. Apply migrations to the database:
-
-    ```bash
+## 7. Apply migrations to the database:
+   
     python manage.py migrate
-    ```
+    
 
-# 8. Create a superuser (admin) for the Django admin interface:
-
-    ```bash
+## 8. Create a superuser (admin) for the Django admin interface:
+  
     python manage.py createsuperuser
-    ```
+    
 
-# 9. Start the development server:
-
-    ```bash
+## 9. Start the development server:
+   
     python manage.py runserver
-    ```
+    
 
-# 10. Open a web browser and navigate to: 
+## 10. Open a web browser and navigate to: 
 
-    ```bash
     http://127.0.0.1:8000/admin/
-    ```
+    
 
 ## Contribution
 
@@ -87,7 +80,7 @@ Contributions are welcome! Feel free to open an issue or submit a pull request w
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://opensource.org/licenses/MIT) file for details.
 
 ---
 Developed by [Estela Ricardo](https://github.com/Estela-Ricardo)
