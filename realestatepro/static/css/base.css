@@ -8,7 +8,7 @@
   --mainText: #ddd;
   --secondaryText: #ccc;
   --selectedText: #ffffcc;
-  --bgCardColor: #222;
+  --bgCardColor: #212121;
   --backgroundColor: #121212;
 }
 
@@ -87,8 +87,8 @@ footer {
   color: var(--secondaryText);
   text-align: center;
   padding: 30px 30px 15px 10px;
-  margin-top: 30px;
   bottom: 0;
+  position: absolute;
   width: 100%;
   font-size: large;
 }
