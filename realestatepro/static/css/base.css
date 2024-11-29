@@ -12,7 +12,14 @@
   --backgroundColor: #121212;
 }
 
+html {
+  /* position: absolute; */
+  display: flex;
+  flex-direction: column;
+}
+
 body {
+  min-height: 100vh;
   margin: 0;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
@@ -88,7 +95,8 @@ footer {
   text-align: center;
   padding: 30px 30px 15px 10px;
   bottom: 0;
-  position: absolute;
+  margin: auto;
+  /* position: relative; */
   width: 100%;
   font-size: large;
 }

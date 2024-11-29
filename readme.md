@@ -49,29 +49,24 @@ To run the project locally, follow these steps:
 ### 4. Install the project dependencies using the requirements.txt file:
    
     pip install -r requirements.txt
-    
+        
 
-### 6. Create initial database migrations:    
-   
-    python manage.py makemigrations
-    
-
-### 7. Apply migrations to the database:
+### 5. Apply migrations to the database:
    
     python manage.py migrate
     
 
-### 8. Create a superuser (admin) for the Django admin interface:
+### 6. Create a superuser (admin) for the Django admin interface:
   
     python manage.py createsuperuser
     
 
-### 9. Start the development server:
+### 7. Start the development server:
    
     python manage.py runserver
     
 
-### 10. Open a web browser and navigate to: 
+### 8. Open a web browser and navigate to: 
 
     http://127.0.0.1:8000/admin/
 
