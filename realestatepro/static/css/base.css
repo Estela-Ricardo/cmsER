@@ -13,13 +13,13 @@
 }
 
 html {
-  /* position: absolute; */
-  display: flex;
-  flex-direction: column;
+  height: 100%;
 }
 
 body {
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
   margin: 0;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
@@ -41,7 +41,7 @@ h6 {
 
 #header {
   background: var(--mainColor);
-  overflow: auto;
+  flex-shrink: 0; /* Evita que o header ocupe espaço além do necessário */
   padding: 10px 20px;
   border-bottom: 6px solid var(--secondaryColor);
 }
@@ -94,9 +94,8 @@ footer {
   color: var(--secondaryText);
   text-align: center;
   padding: 30px 30px 15px 10px;
-  bottom: 0;
-  margin: auto;
-  /* position: relative; */
+  flex-shrink: 0; /* Garante que o footer não diminua de tamanho */
+  margin-top: auto; /* Empurra o footer para o fim, se necessário */
   width: 100%;
   font-size: large;
 }

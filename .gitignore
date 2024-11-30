@@ -1,12 +1,37 @@
 # Ignore SQLite database file
-*.sqlite*
+*.sqlite3
 
 # Ignore compiled Python files
-*__pycache__/
-*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
 
-# Ignore media files (imagens)
-media/images/
+# Ignore media files (imagens e uploads)
+media/
+
+# Ignore static files (gerados por collectstatic)
+staticfiles/
+static/
+
+# Ignore environment files
+.env
+*.env
 
 # Ignore migrations
-**/migrations/
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# Ignore IDE/editor configs
+.vscode/
+.idea/
+*.swp
+
+# Ignore logs
+*.log
+logs/
+
+# Ignore pytest cache
+.pytest_cache/
+
+# Ignore Django secret key or sensitive settings
+settings_local.py
