@@ -9,9 +9,6 @@ __pycache__/
 # Ignore media files (imagens e uploads)
 media/
 
-# Ignore static files (gerados por collectstatic)
-staticfiles/
-static/
 
 # Ignore environment files
 .env
